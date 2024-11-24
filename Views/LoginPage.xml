@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClientManager.Views.LoginPage"
+             Title="Login">
+    <VerticalStackLayout Padding="20" Spacing="10"
+                        VerticalOptions="Center" MaximumWidthRequest="400">
+        
+        <Entry Text="{Binding Username}"
+               Placeholder="Username"
+               IsEnabled="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}"/>
+
+        <Entry Text="{Binding Password}"
+               Placeholder="Password"
+               IsPassword="True"
+               IsEnabled="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}"/>
+
+        <Entry Text="{Binding TwoFactorCode}"
+               Placeholder="2FA Code"
+               IsEnabled="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}"/>
+
+        <Button Text="Login"
+                Command="{Binding LoginCommand}"
+                IsEnabled="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}"/>
+
+        <ActivityIndicator IsRunning="{Binding IsBusy}"
+                          IsVisible="{Binding IsBusy}"/>
+
+        <Label Text="{Binding ErrorMessage}"
+               TextColor="Red"
+               IsVisible="{Binding ErrorMessage, Converter={StaticResource StringNotEmptyConverter}}"/>
+    </VerticalStackLayout>
+</ContentPage>
