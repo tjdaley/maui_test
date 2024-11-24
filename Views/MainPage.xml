@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClientManager.Views.MainPage"
+             Title="Clients">
+    <Grid ColumnDefinitions="250,*">
+        <!-- Client List -->
+        <CollectionView Grid.Column="0"
+                       ItemsSource="{Binding Clients}"
+                       SelectedItem="{Binding SelectedClient}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Label Text="{Binding Name}"
+                           Padding="10"/>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Content Area -->
+        <VerticalStackLayout Grid.Column="1" Padding="20">
+            <Label Text="Select a client from the list"
+                   IsVisible="{Binding SelectedClient, Converter={StaticResource IsNullConverter}}"/>
+            
+            <Label Text="{Binding SelectedClient.Name}"
+                   IsVisible="{Binding SelectedClient, Converter={StaticResource IsNotNullConverter}}"/>
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>
